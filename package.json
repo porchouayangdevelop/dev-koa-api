@@ -2,7 +2,6 @@
   "name": "koa-heroku",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
@@ -18,9 +17,15 @@
     "koa": "^2.13.4",
     "koa-body": "^5.0.0",
     "koa-bodyparser": "^4.3.0",
+    "koa-cors": "^0.0.16",
     "koa-json": "^2.0.2",
     "koa-jwt": "^4.0.3",
+    "koa-logger": "^3.2.1",
     "koa-router": "^10.1.1",
     "mongoose": "^6.3.4"
+  },
+  "engines": {
+    "node": "16.15.0",
+    "npm": "8.5.5"
   }
 }
