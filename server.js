@@ -107,6 +107,12 @@ app.use(async (ctx, next) => {
 });
 
 
+// set-image-type
+app.use(async (ctx, next) => {
+    ctx.set('Content-Type', 'image/jpeg');
+    await next();
+});
+
 
 
 
