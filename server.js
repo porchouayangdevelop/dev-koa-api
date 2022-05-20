@@ -6,6 +6,10 @@ const json = require('koa-json');
 require('dotenv').config();
 require('./config/config').connect();
 
+const mime = require('mime-types');
+const multer = require('koa-multer');
+const fs = require('fs');
+
 const PORT = process.env.PORT || 3000;
 const app = new koa();
 
@@ -103,9 +107,24 @@ app.use(async (ctx, next) => {
 });
 
 
+
+
+
+
 // Routes
 const path = require('./path');
+const admin = require('./routes/admin.routes');
+const supplier = require('./routes/supplier.routes');
+const category = require('./routes/category.routes');
+const product = require('./routes/product.routes');
+
+
+// Use Routes
 app.use(path.routes());
+app.use(admin.routes());
+app.use(supplier.routes());
+app.use(category.routes());
+app.use(product.routes());
 
 app.on('error', (err, ctx) => {
     console.error('server error', err, ctx);
