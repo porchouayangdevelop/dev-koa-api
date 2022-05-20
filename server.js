@@ -6,7 +6,7 @@ const json = require('koa-json');
 require('dotenv').config();
 require('./config/config').connect();
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 3000;
 const app = new koa();
 
 // Middleware
