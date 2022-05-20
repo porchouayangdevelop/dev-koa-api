@@ -4,9 +4,9 @@ const bodyParser = require('koa-bodyparser');
 const logger = require('koa-logger');
 const json = require('koa-json');
 require('dotenv').config();
-require('./config/config').connect();
+// require('./config/config').connect();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 const app = new koa();
 
 // Middleware
