@@ -28,7 +28,12 @@ exports.getSupplier = async (ctx, next) => {
 };
 
 exports.createSupplier = async (ctx, next) => {
-    const { name, phone, address, description } = ctx.request.body;
+    const {
+        name,
+        phone,
+        address,
+        description
+    } = ctx.request.body;
 
     if (!name || !phone || !address || !description) {
         ctx.status = 400;
@@ -42,7 +47,7 @@ exports.createSupplier = async (ctx, next) => {
         name: name,
         phone: phone,
         address: address,
-        description: description       
+        description: description
     });
     await supplier.save();
     ctx.status = 201;
@@ -54,7 +59,12 @@ exports.createSupplier = async (ctx, next) => {
 }
 
 exports.updateSupplier = async (ctx, next) => {
-    const { name, phone, address, description } = ctx.request.body;
+    const {
+        name,
+        phone,
+        address,
+        description
+    } = ctx.request.body;
 
     if (!name || !phone || !address || !description) {
         ctx.status = 400;
@@ -69,6 +79,8 @@ exports.updateSupplier = async (ctx, next) => {
         phone: phone,
         address: address,
         description: description
+    }, {
+        new: true
     });
     if (!supplier) {
         ctx.status = 400;

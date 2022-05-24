@@ -31,7 +31,7 @@ const supplierSchema = new Schema({
         text: 'address is required',
         validate: {
             validator: function (v) {
-                return /^[a-zA-Z0-9]*$/.test(v);
+                return /^[a-zA-Z0-9]/.test(v);
             }
         },
     },

@@ -12,7 +12,7 @@ const mime = require('mime-types');
 const multer = require('koa-multer');
 const fs = require('fs');
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000 || 5000;
 const app = new koa();
 
 // Middleware
@@ -131,7 +131,7 @@ const supplier = require('./routes/supplier.routes');
 const category = require('./routes/category.routes');
 // const product = require('./routes/product.routes');
 // const upload = require('./routes/upload.routes');
-
+const customer = require('./routes/customer.routes');
 
 // Use Routes
 app.use(path.routes());
@@ -140,6 +140,7 @@ app.use(supplier.routes());
 app.use(category.routes());
 // app.use(product.routes());
 // app.use(upload.routes());
+app.use(customer.routes())
 
 app.on('error', (err, ctx) => {
     console.error('server error', err, ctx);

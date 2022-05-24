@@ -22,8 +22,10 @@ const customerSchema = new Schema({
         required: true,
     },
     phone: {
-        type: String,
+        type: Number,
         required: true,
+        
+        text: 'Phone number must be 10 digits'
     },
     address: {
         type: String,
@@ -37,7 +39,6 @@ const customerSchema = new Schema({
     },
     image: {
         type: String,
-        required: true,
     },
 }, { timestamps: true });
 
