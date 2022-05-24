@@ -17,7 +17,6 @@ exports.signUp = async (ctx, next) => {
         role
     } = ctx.request.body;
 
-
     if(!firstname || !lastname || !username || !password || !email || !phone || !role) {
         ctx.status = 400;
         ctx.body = {

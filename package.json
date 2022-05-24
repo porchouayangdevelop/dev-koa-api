@@ -25,9 +25,16 @@
     "koa-logger": "^3.2.1",
     "koa-multer": "^1.0.2",
     "koa-router": "^10.1.1",
+    "koa-static": "^5.0.0",
     "koa-validate": "^1.0.7",
     "mime-types": "^2.1.35",
-    "mongoose": "^6.3.4"
+    "mongoose": "^6.3.4",
+    "multer-gridfs-storage": "^5.0.2",
+    "path": "^0.12.7",
+    "sharp": "^0.30.4",
+    "util": "^0.12.4",
+    "uuid": "^8.3.2",
+    "uuidv4": "^6.2.13"
   },
   "engines": {
     "node": "16.15.0",

@@ -1,60 +1,31 @@
-const multer = require('koa-multer');
 
+const multer = require('multer');
+const util = require('util');
 const fs = require('fs');
+const {GridFsStorage} = require('multer-gridfs-storage');
+const config = require('../config/db');
 
-exports.upload = async (ctx, next) => {
-    const storage = multer.diskStorage({
-        destination: function (req, file, cb) {
-            cb(null, './uploads/');
-        },
-        filename: function (req, file, cb) {
-            var fileformat = (file.originalname).split('.');
-            cb(null, file.fieldname + '-' + Date.now() + '.' + fileformat[fileformat.length - 1]);
+var storage = new GridFsStorage({
+    url: config.url + config.db,
+    options: { useNewUrlParser: true, useUnifiedTopology: true },
+    file: (req, file) => {
+        const match = ["image/png", "image/jpeg"];
+        if (match.indexOf(file.mimetype) === -1) {
+            const filename = `${file.originalname} - ${Date.now()}`;
+            return filename;
         }
-    })
-
-    var upload = multer({
-        limits: {   
-            fileSize: 1024 * 1024 * 5
-        },
-        storage: storage
-    });
-
-    const file = upload.single('file');
-    file(ctx, next);
-}
-
-exports.uploaded = async (ctx, next) => {
-    const file = ctx.request.file;
-    if (!file) {
-        ctx.status = 400;
-        return;
+        return {
+            bucketName: config.imgBucket,
+            filename: `${file.originalname} - ${Date.now()}`
+        };
     }
+});
 
-    ctx.status = 200;
-    ctx.body = {
-        message: 'File uploaded successfully',
-        data: file
-    };
-    await next();
-}
 
-exports.delete = async (ctx, next) => {
-    const file = ctx.request.body.file;
-    if (!file) {
-        ctx.status = 400;
-        return;
-    }
+var upload = multer({ storage: storage });
+var uploadFile = util.promisify(upload.single('image'));
 
-    fs.unlink(file, (err) => {
-        if (err) throw err;
-        console.log('File deleted!');
-    });
 
-    ctx.status = 200;
-    ctx.body = {
-        message: 'File deleted successfully',
-        data: file
-    };
-    await next();
+module.exports = {
+    uploadFile
 }
